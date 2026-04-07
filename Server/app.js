@@ -21,7 +21,8 @@ app.use(express.json());
 //app.use(express.static(path.join(__dirname, "../client/dist")));
 
 app.use(cors({
-  origin:"https://praneshstatusmanager.netlify.app"
+  origin:"https://praneshstatusmanager.netlify.app",
+  credentials: true
 }));
 // const whitelist = [
 //   "https://swip-tory-pied.vercel.app",
