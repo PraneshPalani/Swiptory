@@ -63,13 +63,13 @@ connectDB();
 app.use("/api/user", userRoutes);
 app.use("/api/story", storyRoutes);
 
-// app.get("/", async (req, res) => {
-//   res.status(200).json("Server is up and running");
-// });
-
-app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
+app.get("/", async (req, res) => {
+  res.status(200).json("Server is up and running");
 });
+
+// app.get("*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
+// });
 
 // Start server
 const PORT = process.env.PORT;
