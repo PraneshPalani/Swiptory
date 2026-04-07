@@ -18,9 +18,11 @@ const app = express();
 
 // ====================================================== MIDDLEWARE =====================================================
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "../client/dist")));
+//app.use(express.static(path.join(__dirname, "../client/dist")));
 
-// app.use(cors());
+app.use(cors({
+  origin:"https://praneshstatusmanager.netlify.app"
+}));
 // const whitelist = [
 //   "https://swip-tory-pied.vercel.app",
 //   "https://swip-tory-ankitamalik22.vercel.app",
@@ -37,11 +39,11 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
 // };
 
 // app.use(cors());
-const corsOptions = {
-  credentials: true,
-  origin: "http://localhost:5173",
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   credentials: true,
+//   origin: "http://localhost:5173",
+// };
+// app.use(cors(corsOptions));
 
 
 app.use(cookieParser());
