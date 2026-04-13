@@ -26,16 +26,12 @@ console.log(axios.defaults.baseURL);
 // ===================================== LOAD USER =====================================
 
 export const loadUser = () => async (dispatch) => {
-  // const username = JSON.parse(localStorage.getItem("username"));
+  const username = JSON.parse(localStorage.getItem("username"));
   try {
     dispatch(loadUserRequest());
-    const token = localStorage.getItem("token");
 
-    const { data } = await axios.get(`/api/user/load`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const { data } = await axios.get(`/api/user/load/${username}`);
+
     dispatch(loadUserSuccess(data));
 
     // toast.success("User Loaded");
@@ -54,8 +50,7 @@ export const register = (values) => async (dispatch) => {
       withCredentials: true,
     });
     dispatch(registerSuccess(data));
-    // localStorage.setItem("username", JSON.stringify(data.username));
-    localStorage.setItem("token", data.token);
+    localStorage.setItem("username", JSON.stringify(data.username));
     toast.success("Register Successful", {
       position: "bottom-left",
       autoClose: 2000,
@@ -79,8 +74,7 @@ export const login = (values) => async (dispatch) => {
     dispatch(loginSuccess(data));
 
     dispatch(getStoriesByUser(data.userId));
-    // localStorage.setItem("username", JSON.stringify(data.username));
-    localStorage.setItem("token", data.token);
+    localStorage.setItem("username", JSON.stringify(data.username));
 
     toast.success("Login Successful", {
       position: "bottom-left",
@@ -101,7 +95,7 @@ export const logout = () => async (dispatch) => {
 
     dispatch(logoutSuccess());
 
-    localStorage.removeItem("token");
+    localStorage.removeItem("username");
     toast.success("Logout Successful", {
       position: "bottom-left",
       autoClose: 1000,
