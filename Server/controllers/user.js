@@ -41,6 +41,7 @@ const register = async (req, res, next) => {
     const token = jwt.sign({ username: username }, process.env.JWT_SECRET, {
       expiresIn: "10d",
     });
+    console.log(token);
     res.cookie("token", token, { httpOnly: true, strict: true, secure: true });
 
     res.status(201).json({
