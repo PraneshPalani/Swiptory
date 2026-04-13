@@ -42,7 +42,7 @@ const register = async (req, res, next) => {
       expiresIn: "10d",
     });
     console.log(token);
-    res.cookie("token", token, { httpOnly: true, strict: true, secure: true });
+    res.cookie("token", token, { httpOnly: true, sameSite: "None", secure: true });
 
     res.status(201).json({
       success: true,
